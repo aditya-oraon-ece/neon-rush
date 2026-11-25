@@ -104,8 +104,7 @@ a:focus-visible {
   gap: 9px;
 }
 
-.status-dot,
-.live-message__pulse {
+.status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -160,6 +159,7 @@ a:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
+  touch-action: none;
 }
 
 .arena__hud {
@@ -172,6 +172,11 @@ a:focus-visible {
   align-items: flex-start;
   justify-content: space-between;
   pointer-events: none;
+}
+
+.hud-stats {
+  display: flex;
+  gap: 24px;
 }
 
 .hud-card {
@@ -201,6 +206,11 @@ a:focus-visible {
   font-size: 19px;
   letter-spacing: 0.12em;
   text-shadow: 0 0 17px rgba(61, 244, 255, 0.45);
+}
+
+.hud-card__value--timer {
+  color: #ff84d8;
+  text-shadow: 0 0 17px rgba(255, 70, 200, 0.42);
 }
 
 .pause-button {
@@ -241,7 +251,8 @@ a:focus-visible {
 }
 
 .welcome-panel,
-.state-panel {
+.state-panel,
+.gameover-panel {
   position: relative;
   z-index: 2;
   width: min(100% - 34px, 500px);
@@ -374,32 +385,92 @@ a:focus-visible {
   font-size: 8px;
 }
 
-.live-message {
-  position: relative;
-  z-index: 2;
-  padding: 16px 21px;
-  border: 1px solid rgba(61, 244, 255, 0.16);
-  background: rgba(8, 10, 24, 0.72);
-  color: #c9cde0;
-  font-family: var(--font-display);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-align: center;
-  backdrop-filter: blur(6px);
+.gameover-panel {
+  padding: 28px 25px 24px;
+  border: 1px solid rgba(121, 127, 179, 0.22);
+  background:
+    linear-gradient(140deg, rgba(26, 28, 59, 0.7), rgba(10, 11, 25, 0.78) 54%, rgba(27, 11, 37, 0.48)),
+    var(--color-panel);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(9px);
 }
 
-.live-message__pulse {
-  display: inline-block;
-  margin-right: 9px;
-  vertical-align: 1px;
+.gameover-panel .game-title {
+  margin: 16px 0 18px;
+  font-size: clamp(52px, 8vw, 75px);
 }
 
-.live-message p {
-  margin: 9px 0 0;
+.gameover-panel__label {
+  margin: 0;
   color: var(--color-muted);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.gameover-panel__score {
+  margin: 8px 0 18px;
+  color: var(--color-cyan);
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 17px rgba(61, 244, 255, 0.4);
+}
+
+.gameover-panel__actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gameover-panel__actions .start-button {
+  justify-content: center;
+  margin-top: 0;
+}
+
+.secondary-button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(133, 137, 165, 0.35);
+  background: transparent;
+  color: #b6bad2;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.secondary-button:hover {
+  border-color: var(--color-pink);
+  color: var(--color-pink);
+}
+
+.game-hint {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  z-index: 2;
+  padding: 8px 12px;
+  border: 1px solid rgba(133, 137, 165, 0.18);
+  background: rgba(8, 10, 24, 0.72);
+  color: #a7abc4;
+  font-family: var(--font-display);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.game-hint strong {
+  color: var(--color-cyan);
+}
+
+.game-hint span {
+  margin: 0 8px;
+  color: var(--color-pink);
 }
 
 .arena__coordinates {
@@ -412,6 +483,7 @@ a:focus-visible {
   justify-content: space-between;
   color: rgba(133, 137, 165, 0.65);
   font-size: 8px;
+  pointer-events: none;
 }
 
 .bottombar {
@@ -481,6 +553,10 @@ kbd {
     left: 17px;
   }
 
+  .hud-stats {
+    gap: 15px;
+  }
+
   .welcome-panel {
     padding: 25px 15px 21px;
   }
@@ -496,6 +572,19 @@ kbd {
   .start-button {
     width: min(100%, 246px);
     min-height: 53px;
+  }
+
+  .gameover-panel {
+    padding: 24px 16px 20px;
+  }
+
+  .gameover-panel .game-title {
+    font-size: 58px;
+  }
+
+  .game-hint {
+    bottom: 42px;
+    font-size: 7px;
   }
 
   .arena__coordinates {

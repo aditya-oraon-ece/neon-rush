@@ -35,9 +35,21 @@
         <canvas class="arena__canvas" aria-hidden="true"></canvas>
 
         <div class="arena__hud" aria-label="Game status">
-          <div class="hud-card">
-            <span class="hud-card__label">SCORE</span>
-            <span class="hud-card__value" id="score">000000</span>
+          <div class="hud-stats">
+            <div class="hud-card">
+              <span class="hud-card__label">SCORE</span>
+              <span class="hud-card__value" id="score">000000</span>
+            </div>
+            <div class="hud-card">
+              <span class="hud-card__label">TIME</span>
+              <span
+                class="hud-card__value hud-card__value--timer"
+                id="time-display"
+                role="timer"
+                aria-label="60 seconds remaining"
+                aria-live="off"
+              >60</span>
+            </div>
           </div>
           <button
             class="pause-button"
@@ -73,10 +85,24 @@
           <span class="state-panel__hint">PRESS SPACE OR TAP RESUME</span>
         </div>
 
-        <div class="live-message" id="playing-message" role="status" hidden>
-          <span class="live-message__pulse" aria-hidden="true"></span>
-          <span>ARENA CALIBRATED</span>
-          <p>Target systems arrive in the next milestone.</p>
+        <div class="gameover-panel" id="gameover-screen" aria-labelledby="gameover-title" hidden>
+          <div class="eyebrow"><span></span> RUN COMPLETE</div>
+          <h2 class="game-title" id="gameover-title">GAME<br><span>OVER</span></h2>
+          <p class="gameover-panel__label">FINAL SCORE</p>
+          <p class="gameover-panel__score" id="final-score">000000</p>
+          <div class="gameover-panel__actions">
+            <button class="start-button" id="restart-button" type="button">
+              <span>PLAY AGAIN</span>
+              <span class="start-button__arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="secondary-button" id="return-button" type="button">
+              RETURN TO TITLE
+            </button>
+          </div>
+        </div>
+
+        <div class="game-hint" id="playing-message" hidden>
+          TAP GREEN <strong>+10</strong><span>·</span> AVOID RED <strong>-5</strong>
         </div>
 
         <div class="arena__coordinates" aria-hidden="true">
