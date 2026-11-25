@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070811">
+    <meta
+      name="description"
+      content="NEON RUSH is a fast-paced arcade experience. Enter the arena."
+    >
+    <title>NEON RUSH | Neon Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell" data-phase="ready">
+      <header class="topbar">
+        <a class="wordmark" href="#home" aria-label="Neon Rush home">
+          <span class="wordmark__symbol" aria-hidden="true">N</span>
+          <span>NEON<span class="wordmark__accent">RUSH</span></span>
+        </a>
+        <div class="topbar__status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>ARCADE SYSTEMS ONLINE</span>
+        </div>
+      </header>
+
+      <section class="arena" aria-label="NEON RUSH game arena">
+        <canvas class="arena__canvas" aria-hidden="true"></canvas>
+
+        <div class="arena__hud" aria-label="Game status">
+          <div class="hud-card">
+            <span class="hud-card__label">SCORE</span>
+            <span class="hud-card__value" id="score">000000</span>
+          </div>
+          <button
+            class="pause-button"
+            id="pause-button"
+            type="button"
+            aria-label="Pause game"
+            hidden
+          >
+            <span class="pause-button__icon" aria-hidden="true"></span>
+            <span id="pause-label">PAUSE</span>
+          </button>
+        </div>
+
+        <section class="welcome-panel" id="start-screen" aria-labelledby="game-title">
+          <div class="eyebrow"><span></span> THE ARCADE IS CALLING</div>
+          <h1 class="game-title" id="game-title">
+            NEON<br><span>RUSH</span>
+          </h1>
+          <p class="welcome-panel__copy">
+            Lock in. Stay sharp.<br>
+            Your next high score starts here.
+          </p>
+          <button class="start-button" id="start-button" type="button">
+            <span>START GAME</span>
+            <span class="start-button__arrow" aria-hidden="true">↗</span>
+          </button>
+          <p class="welcome-panel__hint">PRESS ENTER OR TAP TO BEGIN</p>
+        </section>
+
+        <div class="state-panel" id="pause-screen" role="status" hidden>
+          <span class="state-panel__eyebrow">RUN PAUSED</span>
+          <p>Take a breath.<br>Jump back in when you're ready.</p>
+          <span class="state-panel__hint">PRESS SPACE OR TAP RESUME</span>
+        </div>
+
+        <div class="live-message" id="playing-message" role="status" hidden>
+          <span class="live-message__pulse" aria-hidden="true"></span>
+          <span>ARENA CALIBRATED</span>
+          <p>Target systems arrive in the next milestone.</p>
+        </div>
+
+        <div class="arena__coordinates" aria-hidden="true">
+          <span>SECTOR 01</span>
+          <span>EST. 2088</span>
+        </div>
+      </section>
+
+      <footer class="bottombar">
+        <span>BUILT FOR THE BOLD</span>
+        <span class="bottombar__controls">
+          <kbd>SPACE</kbd> PAUSE <span class="bottombar__separator">/</span>
+          <kbd>P</kbd> PAUSE
+        </span>
+        <span class="bottombar__version">NEON RUSH <span>·</span> 001</span>
+      </footer>
+    </main>
+  </body>
+</html>
